@@ -1,0 +1,52 @@
+export CC := gcc
+export INCS += -I.
+export LIBS += 
+export CFLAGS += -ggdb3 -Wall -Wextra -pedantic -Wno-long-long -pipe $(INCS)
+export OBJS += i_util.o parser_text.o parser_ip2location.o parser.o i_conf.o \
+	parser_core.o
+
+.PHONY: all
+all: ip2clued ip2clue ip2clue_stress
+
+ip2clued:	$(OBJS) ip2clued.c
+	$(CC) $(CFLAGS) ip2clued.c -o ip2clued $(OBJS) -lpthread -lConn
+
+ip2clue:	$(OBJS) ip2clue.c
+	$(CC) $(CFLAGS) ip2clue.c -o ip2clue $(OBJS) -lConn
+
+ip2clue_stress:	$(OBJS) ip2clue_stress.c
+	$(CC) $(CFLAGS) ip2clue_stress.c -o ip2clue_stress $(OBJS) -lConn
+
+i_util.o: i_util.c i_util.h i_types.h i_config.h
+	$(CC) $(CFLAGS) -c $<
+
+parser_text.o: parser_text.c parser_text.h i_util.o parser_core.o
+	$(CC) $(CFLAGS) -c $<
+
+parser_ip2location.o: parser_ip2location.c i_util.o
+	$(CC) $(CFLAGS) -c $<
+
+parser.o: parser.c parser.h parser_text.o parser_ip2location.o parser_core.o
+	$(CC) $(CFLAGS) -c $<
+
+i_conf.o: i_conf.c i_conf.h i_config.h
+	$(CC) $(CFLAGS) -c $<
+
+.PHONY: clean
+clean:
+	rm -f $(OBJS) ip2clued ip2clue
+
+install: all
+	mkdir -p "${I_VAR}/cache/${PRJ}"
+	mkdir -p "${I_ETC}/${PRJ}"
+	cp -vd etc/*.conf "${I_ETC}/${PRJ}/"
+	mkdir -p "${I_ETC}/rc.d/init.d/"
+	cp etc/ip2clued "${I_ETC}/rc.d/init.d/"
+	mkdir -p "${I_USR_BIN}"
+	cp -vd ip2clue "${I_USR_BIN}"
+	mkdir -p "${I_USR_SBIN}"
+	cp -vd ip2clued "${I_USR_SBIN}"
+	mkdir -p "${I_ETC}/cron.daily/"
+	cp -vd crons/* "${I_ETC}/cron.daily/"
+	mkdir -p "${I_USR_SHARE}/${PRJ}"
+	cp -vd data/* "${I_USR_SHARE}/${PRJ}/"

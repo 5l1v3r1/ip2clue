@@ -1,0 +1,49 @@
+Name: ip2clue
+Description: High-performance IPv4 and IPv6 daemon to retrieve IPv4/6 information
+Author: Catalin(ux) M. BOIE
+Web: http://kernel.embedromix.ro/us/
+
+
+. Paid support
+Call +40-745-048374
+
+
+. About
+This software product provides access to multiple IP databases (Maxmind,
+Software 77, Webhosting.info and ip2location) to retrieve IP information
+(country short, country long etc.).
+It has a daemon that supports lots of concurrent connections thanks to Conn
+library (also at http://kernel.embedromix.ro/us/), and a client binary.
+Also, some client examples are provided (PHP, C etc.).
+
+Databases supported:
+- http://ip-to-country.webhosting.info/ (format 'webhosting')
+- http://software77.net/ (format 'software77')
+- http://www.maxmind.com/app/geolitecountry - both IPv4 and IPv6 (formats
+'maxmind' and 'maxmind-v6')
+- http://www.ip2location.com/ (format 'ip2location')
+
+
+. Configuration
+- Edit /etc/ip2clue/download.conf to start automatically download the data.
+- Edit /etc/ip2clue/ip2clued.conf to configure IPv4/IPv6 support, port etc.
+
+
+. Running & operations
+- Start the ip2clued daemon (service ip2clued start, for example).
+- Connect to it with "telnet localhost 9999" and type "S" and Enter:
+statistics will be displayed. Depending on databases sizes, will take some time
+for the daemon to return data.
+- To test it, connect to it as above and issue command "R193.193.193.193" and
+then press Enter: Something like "OK ip=193.193.193.193 cs=UA cl= tz= isp="
+will appear.
+
+
+. Performance
+- 2010-07-07, Athlon X2 5400+, running ip2clue_stress.php on the same machine
+(loopback network, IPv4), it achived more than 10.000 requests per second.
+ip2clue_stress (C version) achieved more than 12.500 requests per second.
+
+
+. License
+GPLv3 or later

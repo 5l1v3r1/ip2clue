@@ -1,0 +1,17 @@
+[ ] IPv6: do not forget about 2002:xxyy:zztt::/48, ::a.b.c.d and ::ffff:a.b.c.d.
+[ ] endianess checks
+[ ] Remove extra pointer from core structure and add a parallel list for 
+'extra' to be cache friendly. Do not forget that pointer is 8 bytes on x86_64!
+[ ] We can store only first 64 bits of IPv6 addreses?
+[ ] We always split in half, so we may store in a table the middle points and
+to not compute them every time. But this means more cache misses. :(
+[ ] elap_load is in seconds?! Should be in miliseconds!
+[ ] UDP
+[ ] Dependencies: unzip, gzip, wget
+[ ] ip2clue_error is mixed between the threads!
+[ ] Extend extra for 'text' parsers (long country etc.).
+[ ] Allow client to specify the format.
+[ ] Maxmind binary file?
+[ ] Add a flag to output what block an ip belongs to (example block=1.1.1.0/24)
+[ ] Store only first 64 bits of IPv6 addresses.
+[ ] 

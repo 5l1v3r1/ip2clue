@@ -1,0 +1,22 @@
+[v0.0.91 -> v0.0.92]
+	Catalin(ux) M. BOIE (9):
+	      Added parser_core files/functions.
+	      Check daily if we need to re-download data, not monthly.
+	      Improved default file list.
+	      Add a configuration option to not put daemon in background.
+	      By default, log file is in /var/log/ now.
+	      If something is not OK with the conf file, output to the screen not in logs.
+	      Software77 has '#' comments, so the parser should be aware.
+	      If a file is not good, log more info about it.
+	      Bumped up the version to 0.0.92.
+	
+
+[v0.0.90 -> v0.0.91]
+	Catalin(ux) M. BOIE (6):
+	      Tests if the file exists before getting mtime.
+	      Corrected wrong path to config file.
+	      Improved paths and macros.
+	      Some paths need to be created.
+	      Duilder updates.
+	      Bumped up the version to 0.0.91.
+	

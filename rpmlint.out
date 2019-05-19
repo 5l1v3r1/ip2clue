@@ -1,0 +1,9 @@
+ip2clue.src: I: checking
+ip2clue.src: I: checking-url http://kernel.embedromix.ro/us/ (timeout 10 seconds)
+ip2clue.src: I: checking-url http://kernel.embedromix.ro/us/ip2clue/ip2clue-0.0.92.tar.gz (timeout 10 seconds)
+ip2clue.src: W: file-size-mismatch ip2clue-0.0.92.tar.gz = 44093, http://kernel.embedromix.ro/us/ip2clue/ip2clue-0.0.92.tar.gz = 156553
+The size of the file in the package does not match the size indicated by
+peeking at its URL.  Verify that the file in the package has the intended
+contents.
+
+1 packages and 0 specfiles checked; 0 errors, 1 warnings.
